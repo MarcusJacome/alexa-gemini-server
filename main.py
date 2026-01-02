@@ -1,10 +1,9 @@
 import google.generativeai as genai
 from flask import Flask, request, jsonify
-
+import os
 # 1. CONFIGURACIÓN DE LA IA (GEMINI 2.5 FLASH)
 # Coloca aquí tu API Key de Google AI Studio
-API_KEY = "AIzaSyDRHWTIfvNZjkdClDaPkp7FE4pOdUtMRN4" 
-genai.configure(api_key=API_KEY)
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 
 # Configuración del modelo para respuestas precisas y cortas
 generation_config = {
@@ -83,4 +82,5 @@ def alexa_interface():
 
 if __name__ == "__main__":
     print("Iniciando servidor en puerto 5000...")
+
     app.run(port=5000, debug=True)
